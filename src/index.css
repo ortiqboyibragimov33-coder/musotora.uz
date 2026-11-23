@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --color-alabaster: #F5F3ED;
+  --color-sand: #EAE8E0;
+  --color-espresso: #1C1E18;
+  --color-slate: #5A5D52;
+  --color-olive: #4F5D34;
+  --color-olive-hover: #3F4B28;
+  --color-forest: #313B22;
+  --color-terracotta: #B85D3B;
+  --color-stone: #D9D6CA;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: #F5F3ED;
+    color: #1C1E18;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, .font-editorial {
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+
+  :focus-visible {
+    outline: 2px solid #4F5D34;
+    outline-offset: 3px;
+  }
+}
+
+.ease-architectural {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-underline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@keyframes editorialReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-reveal {
+  opacity: 0;
+  animation: editorialReveal 750ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes panelSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-backdrop-in {
+  animation: backdropFadeIn 350ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-panel-in {
+  animation: panelSlideUp 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-hero-reveal,
+  .animate-backdrop-in,
+  .animate-panel-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .link-underline::after,
+  .reveal-on-scroll {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

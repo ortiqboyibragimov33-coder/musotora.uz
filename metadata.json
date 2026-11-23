@@ -1,0 +1,6 @@
+{
+  "name": "ARK Cafe",
+  "description": "An architectural sanctuary for slow-roasted specialty coffee, seasonal plates, and unhurried conversation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
